@@ -1,11 +1,24 @@
-import './App.css';
+import Navigation from './pages/partilas/Navigation'
+import HomePage from './pages/HomePage'
+import { Route, Switch } from 'react-router-dom'
+import Container from 'react-bootstrap/Container'
 
 function App() {
   return (
-    <div className="App">
-      <h1>I am photo-view app</h1>
-    </div>
-  );
+    <>
+      <Navigation />
+      <Container>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          {/* <Route exact path="/sign up">
+            <SignupPage />
+          </Route> */}
+        </Switch>
+      </Container>
+    </>
+  )
 }
 
-export default App;
+export default App
