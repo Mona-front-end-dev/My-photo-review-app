@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import './index.css'
 import App from './App'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { BrowserRouter } from 'react-router-dom';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { BrowserRouter } from 'react-router-dom'
+import { ReactQueryDevtools } from 'react-query/devtools'
+import  AuthContextProvider from './contexts/AuthContext'
 import './App.scss'
 
 const queryClient = new QueryClient({
@@ -21,7 +21,11 @@ ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <App />
+        <AuthContextProvider>
+
+          <App />
+
+        </AuthContextProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </BrowserRouter>
     </QueryClientProvider>
