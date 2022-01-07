@@ -11,7 +11,6 @@ const LoginPage = () => {
 	const [loading, setLoading] = useState(false)
 	const navigate = useNavigate()
 	const { login } = useAuthContext()
-	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -24,7 +23,7 @@ const LoginPage = () => {
 		} catch (e) {
 		setError(e.message)
 		setLoading(false)
-		
+
 	}
 }
 
