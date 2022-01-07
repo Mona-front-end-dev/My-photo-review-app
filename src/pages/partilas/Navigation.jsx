@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import 'bootstrap/dist/css/bootstrap.css'
 
 const Navigation = () => {
+	
   return (
     <Navbar bg="dark" variant="dark" expand="md">
       <Container>
@@ -12,7 +13,7 @@ const Navigation = () => {
           <span className="router-link">Photo Gallary 🖼️</span>
         </Link>
         <div display="flex">
-          <Link to="/signup">
+          <Link to="/signup" >
             <span className="router-link">Sign up</span>
           </Link>
           <Link to="/login">

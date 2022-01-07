@@ -6,8 +6,7 @@ import {
   signOut,
 } from 'firebase/auth'
 import { auth } from '../firebase'
-import Spinner from '../components/Spinner'
-
+import { RingLoader } from 'react-spinners'
 const AuthContext = createContext()
 
 const useAuthContext = () => {
@@ -31,9 +30,10 @@ const AuthContextProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user)
-      setLoading(false)
+	//listen for authState changes
+	onAuthStateChanged(auth, (user) => {
+		setCurrentUser(user)
+		setLoading(false)
     })
   }, [])
 
@@ -47,8 +47,12 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={values}>
-			{children}
-		</AuthContext.Provider>
+		{loading && (
+			<div id='spinner'>
+				< RingLoader color={'#888'} size={100} />
+			</div>)}
+		{ !loading && children}
+	</AuthContext.Provider>
   )
 }
 
