@@ -6,6 +6,8 @@ import { useAuthContext } from '../contexts/AuthContext'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
+import { ref, uploadBytes } from 'firebase/storage'
+import { storage } from '../firebase'
 
 const HomePage = () => {
 	const { currentUser } = useAuthContext()
@@ -18,9 +20,23 @@ const HomePage = () => {
 		console.log('File changed!', e.target.files[0])
 	}
 
-	const handleSubmit = (e) => {
-		debugger;
+	const handleSubmit = async (e) => {
 		e.preventDefault()
+
+		if (!image){
+			return
+		}
+
+		// create reference to be able to upload a file
+		const fileRef = ref(storage, image.name)
+
+		try {
+			//upload image to fileRef
+			const uploadResult = await uploadBytes(fileRef, image)
+			console.log('Success!', uploadResult)
+		} catch (e) {
+			console.log('not success', e)
+		}
 	}
 
 	const handleReset = () => {
