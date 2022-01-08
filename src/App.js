@@ -24,7 +24,6 @@ function App() {
             }
           />
 		  <Route
-			exact
 			path="/createAlbums"
             element={
               <RequireAuth redirectTo='/login'>
