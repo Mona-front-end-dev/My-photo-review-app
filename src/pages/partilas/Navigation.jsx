@@ -19,7 +19,7 @@ const Navigation = () => {
 			{
 				currentUser ? (
 					<>
-						<NavLink to='/createAlbums' className='nav-link'>Create albums</NavLink>
+						<NavLink to='/createAlbums' className='nav-link'>Create Allbums</NavLink>
 						<NavDropdown title={currentUser.displayName || currentUser.email} id="basic-nav-dropdown">
 							{/* <NavLink to="/update-profile" className="dropdown-item">Update Profile</NavLink> */}
 							{/* <NavDropdown.Divider /> */}
