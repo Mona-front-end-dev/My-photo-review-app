@@ -1,11 +1,48 @@
 import React from 'react'
 import UploadImage from '../components/UploadImage'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Card from 'react-bootstrap/Card'
+import { db } from '../firebase'
+import { useFirestoreQueryData } from '@react-query-firebase/firestore'
+import { collection } from 'firebase/firestore'
 
 const CreateAllbumsPage = () => {
+  //create ref to collection images
+  const imagesRef = collection(db, 'image')
+  const { data, isLoading, isError } = useFirestoreQueryData(
+    ['image'],
+    imagesRef,
+    {
+      idField: '_id',
+      subscribe: true,
+    },
+    {
+      refetchOnMount: 'always',
+    },
+  )
+
+  console.log(data)
   return (
     <>
       <h1>Images</h1>
-      <p>here will be the albums</p>
+      {isLoading && <p>Loading.. .</p>}
+      <Row>
+        {data &&
+          data.map((image) => (
+            <Col sm={6} md={4} lg={3} key={image._id}>
+              <Card>
+                <Card.Img variant="top" src={image.url} />
+                <Card.Body>
+                  <Card.Text>
+                    {image.name} ({image.size} b)
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+      </Row>
+
       <hr className="my-3" />
       <UploadImage />
     </>
