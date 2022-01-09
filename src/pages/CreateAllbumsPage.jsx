@@ -31,7 +31,7 @@ const CreateAllbumsPage = () => {
         {data &&
           data.map((image) => (
             <Col sm={6} md={4} lg={3} key={image._id}>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Img variant="top" src={image.url} />
                 <Card.Body>
                   <Card.Text>
