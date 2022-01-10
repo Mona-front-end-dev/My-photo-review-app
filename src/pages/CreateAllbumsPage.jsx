@@ -9,7 +9,7 @@ import { collection } from 'firebase/firestore'
 
 const CreateAllbumsPage = () => {
   //create ref to collection images
-  const imagesRef = collection(db, 'image')
+  const imagesRef = collection(db, 'images')
   const { data, isLoading, isError } = useFirestoreQueryData(
     ['image'],
     imagesRef,
@@ -31,11 +31,16 @@ const CreateAllbumsPage = () => {
         {data &&
           data.map((image) => (
             <Col sm={6} md={4} lg={3} key={image._id}>
-              <Card className='mb-3'>
-                <Card.Img variant="top" src={image.url} />
+              <Card className="mb-3">
+                <a href={image.url} target='_blank'>
+                  <Card.Img variant="top" src={image.url} />
+                </a>
                 <Card.Body>
                   <Card.Text>
-                    {image.name} ({image.size} b)
+                    <>
+                      {image.name} ({image.size} b)
+                    </>
+                    <>{image._id}</>
                   </Card.Text>
                 </Card.Body>
               </Card>

@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form'
 import {
   getDownloadURL,
   ref,
-  uploadBytes,
   uploadBytesResumable,
 } from 'firebase/storage'
 import { db, storage } from '../firebase'
@@ -40,7 +39,7 @@ const UploadImage = () => {
     // find the file extension
     const extension = image.name.substring(image.name.lastIndexOf('.') + 1)
 
-    // create reference to be able to upload a file
+    // create reference in order to be able to upload a file
     const fileRef = ref(storage, `images/${uuid}.${extension}`)
 
     // Upload image to fileRef
@@ -71,7 +70,7 @@ const UploadImage = () => {
         const url = await getDownloadURL(fileRef)
 
         //get rference to collection images
-        const collectionRef = collection(db, 'image')
+        const collectionRef = collection(db, 'images')
 
         // create document in db for the uploaded file
         await addDoc(collectionRef, {
