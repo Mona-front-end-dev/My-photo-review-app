@@ -11,6 +11,7 @@ import { collection, addDoc } from 'firebase/firestore'
 import { v4 as uuidv4 } from 'uuid'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import Alert from 'react-bootstrap/Alert'
+import { useDropzone } from 'react-dropzone'
 
 const UploadImage = () => {
   const [image, setImage] = useState(null)

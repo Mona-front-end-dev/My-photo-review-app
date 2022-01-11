@@ -7,7 +7,7 @@ import { db } from '../firebase'
 import { useFirestoreQueryData } from '@react-query-firebase/firestore'
 import { collection } from 'firebase/firestore'
 
-const CreateAllbumsPage = () => {
+const UploadPage = () => {
   //create ref to collection images
   const imagesRef = collection(db, 'images')
   const { data, isLoading, isError } = useFirestoreQueryData(
@@ -25,7 +25,7 @@ const CreateAllbumsPage = () => {
   console.log(data)
   return (
     <>
-      <h1>Images</h1>
+      <h1>Uploaded Images</h1>
       {isLoading && <p>Loading.. .</p>}
       <Row>
         {data &&
@@ -54,4 +54,4 @@ const CreateAllbumsPage = () => {
   )
 }
 
-export default CreateAllbumsPage
+export default UploadPage
