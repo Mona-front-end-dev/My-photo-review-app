@@ -6,6 +6,7 @@ import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import LogoutPage from './pages/LogoutPage'
 import UploadPage from './pages/UploadPage'
+import UploadPageDropzone from './pages/UploadPageDropzone'
 import RequireAuth from './components/RequireAuth'
 
 function App() {
@@ -21,7 +22,6 @@ function App() {
 
           {/*Protected Routes*/}
           <Route
-            exact
             path="/"
             element={
               <RequireAuth redirectTo="/login">
@@ -30,10 +30,10 @@ function App() {
             }
           />
           <Route
-            path="/createAlbums"
+            path="/upload"
             element={
               <RequireAuth redirectTo="/login">
-                <UploadPage />
+                <UploadPageDropzone />
               </RequireAuth>
             }
           />
