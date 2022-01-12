@@ -19,7 +19,7 @@ const Navigation = () => {
 			{
 				currentUser ? (
 					<>
-						<NavLink to='/upload-page' className='nav-link'>Upload Page</NavLink>
+						<NavLink to='/upload' className='nav-link'>Upload</NavLink>
 						<NavDropdown title={currentUser.displayName || currentUser.email} id="basic-nav-dropdown">
 							{/* <NavLink to="/update-profile" className="dropdown-item">Update Profile</NavLink> */}
 							{/* <NavDropdown.Divider /> */}
