@@ -20,6 +20,10 @@ const ImagesGrid = ({ query }) => {
   if (query.isLoading) {
     return <BeatLoader color="#888" />
   }
+
+  const refetchQuery = () => {
+    query.refetch()
+  }
   return (
     query.data && (
       <Masonry
@@ -28,7 +32,7 @@ const ImagesGrid = ({ query }) => {
         columnClassName="images-masonry-column"
       >
         {query.data.map(image => (
-			<ImageCard image={image} key={image._id}/>
+			<ImageCard image={image} key={image._id} refetchQuery={refetchQuery}/>
         ))}
       </Masonry>
     )
