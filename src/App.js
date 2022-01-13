@@ -16,19 +16,12 @@ function App() {
       <Container className="py-3">
         <Routes>
           {/*Guest Routes*/}
+          <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
 
           {/*Protected Routes*/}
-          <Route
-            path="/"
-            element={
-              <RequireAuth redirectTo="/login">
-                <HomePage />
-              </RequireAuth>
-            }
-          />
           <Route
             path="/upload"
             element={
