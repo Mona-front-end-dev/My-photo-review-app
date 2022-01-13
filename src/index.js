@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import  AuthContextProvider from './contexts/AuthContext'
-import './App.scss'
+import './assets/scss/App.scss'
 
 const queryClient = new QueryClient({
   defaultOptions: {

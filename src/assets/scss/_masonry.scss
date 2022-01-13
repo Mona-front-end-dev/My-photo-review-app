@@ -1,0 +1,17 @@
+
+
+.images-masonry {
+	display: flex;
+	margin-left: -30px;
+	width: auto;
+
+	.images-masonry-column {
+		padding-left: 30px;
+		background-clip: padding-box;
+
+		// affects direct child
+		> * {
+			margin-bottom: 30px;
+		}
+	}
+}
