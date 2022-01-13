@@ -2,11 +2,10 @@ import React, { useCallback } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import { useDropzone } from 'react-dropzone'
-import UploadImage from '../components/UploadImage'
 import useUploadImage from '../hooks/useUploadImage'
 
-const UploadPageDropzone = () => {
-  const uploadImageDrop = useUploadImage()
+const UploadPage = () => {
+  const uploadImage = useUploadImage()
 
   const onDrop = useCallback((acceptedFiles) => {
     if (!acceptedFiles.length) {
@@ -14,7 +13,7 @@ const UploadPageDropzone = () => {
     }
 
     // trigger upload of the first file
-    uploadImageDrop.mutate(acceptedFiles[0])
+    uploadImage.mutate(acceptedFiles[0])
   }, [])
 
   const {
@@ -54,14 +53,14 @@ const UploadPageDropzone = () => {
           )}
         </div>
 
-        {uploadImageDrop.progress !== null && (
-          <ProgressBar variant="success" animated now={uploadImageDrop.progress} />
+        {uploadImage.progress !== null && (
+          <ProgressBar variant="success" animated now={uploadImage.progress} />
         )}
 
-        {uploadImageDrop.isError && (
-          <Alert variant="warning">{uploadImageDrop.error}</Alert>
+        {uploadImage.isError && (
+          <Alert variant="warning">{uploadImage.error}</Alert>
         )}
-        {uploadImageDrop.isSuccess && (
+        {uploadImage.isSuccess && (
           <Alert variant="success">That was a correct file to upload 😎 </Alert>
         )}
       </div>
@@ -69,4 +68,4 @@ const UploadPageDropzone = () => {
   )
 }
 
-export default UploadPageDropzone
+export default UploadPage

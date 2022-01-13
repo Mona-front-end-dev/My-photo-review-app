@@ -16,7 +16,7 @@ const useImages = (params = {}) => {
 		? query(colImagesRef, where('owner', '==', currentUser.uid), orderBy('created', 'desc'))
 		: query(colImagesRef, orderBy('created', 'desc'))
 
-	const imagesQuery = useFirestoreQueryData(['imagess'], queryRef, {
+	const imagesQuery = useFirestoreQueryData(queryKey, queryRef, {
 		// '_id' gives us id to every document
 		idField: '_id',
 	})
