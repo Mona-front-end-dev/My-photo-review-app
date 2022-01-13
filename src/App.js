@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage'
 import LogoutPage from './pages/LogoutPage'
 import UploadPage from './pages/UploadPage'
 import UploadPageDropzone from './pages/UploadPageDropzone'
+import MyImagesPage from './pages/MyImagesPage'
 import RequireAuth from './components/RequireAuth'
 
 function App() {
@@ -22,6 +23,14 @@ function App() {
           <Route path="/logout" element={<LogoutPage />} />
 
           {/*Protected Routes*/}
+          <Route
+            path="/my-images"
+            element={
+              <RequireAuth redirectTo="/login">
+                <MyImagesPage />
+              </RequireAuth>
+            }
+          />
           <Route
             path="/upload"
             element={

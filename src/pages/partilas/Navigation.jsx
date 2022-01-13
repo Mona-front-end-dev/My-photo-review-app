@@ -16,14 +16,17 @@ const Navigation = () => {
           <span className="router-link">Photo Gallary 🖼️</span>
         </Link>
 		<Nav className='ms-auto'>
+		<NavLink to='/' className='nav-link'>All images</NavLink>
 			{
 				currentUser ? (
 					<>
+
+						<NavLink to='/my-images' className='nav-link'>My images</NavLink>
 						<NavLink to='/upload' className='nav-link'>Upload</NavLink>
-						<NavDropdown title={currentUser.displayName || currentUser.email} id="basic-nav-dropdown">
+						<NavDropdown title={currentUser.displayName || currentUser.email} id='basic-nav-dropdown'>
 							{/* <NavLink to="/update-profile" className="dropdown-item">Update Profile</NavLink> */}
 							{/* <NavDropdown.Divider /> */}
-							<NavLink to="/logout" className="dropdown-item">Log Out</NavLink>
+							<NavLink to='/logout' className="dropdown-item">Log Out</NavLink>
 						</NavDropdown>
 					</>
 				) : (
