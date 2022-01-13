@@ -1,18 +1,19 @@
 import React from 'react'
-import { useAuthContext } from '../contexts/AuthContext'
 import Container from 'react-bootstrap/Container'
+import useImages from '../hooks/useImages'
 
 const HomePage = () => {
-  const { currentUser } = useAuthContext()
+	const imagesQuery = useImages()
 
   return (
     <Container className="py-3">
-      <h1>Welcome to my photo app</h1>
-      {currentUser ? (
-        <p>You are logged in as {currentUser.email} !</p>
-      ) : (
-        <p>You are not logged in yet</p>
-      )}
+      <h1>Latest Images</h1>
+
+	  {imagesQuery.data && imagesQuery.data.map(image => (
+		  <div key={image._id}>
+			 	<img src={image.url} title={image._id} />
+		  </div>
+	  ))}
     </Container>
   )
 }
