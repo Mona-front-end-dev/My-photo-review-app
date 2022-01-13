@@ -1,8 +1,9 @@
 import React from 'react'
 import Masonry from 'react-masonry-css'
 import Alert from 'react-bootstrap/Alert'
-import Card from 'react-bootstrap/Card'
 import { BeatLoader } from 'react-spinners'
+import ImageCard from './ImageCard'
+
 
 const masonryBreakpoints = {
 	default: 4,
@@ -26,12 +27,8 @@ const ImagesGrid = ({ query }) => {
         className="images-masonry"
         columnClassName="images-masonry-column"
       >
-        {query.data.map((image) => (
-          <Card key={image._id}>
-            <Card.Header>{image.name}</Card.Header>
-            <Card.Img variant="top" src={image.url} title={image._id} />
-            <Card.Footer>{image.owner}</Card.Footer>
-          </Card>
+        {query.data.map(image => (
+			<ImageCard image={image} key={image._id}/>
         ))}
       </Masonry>
     )
