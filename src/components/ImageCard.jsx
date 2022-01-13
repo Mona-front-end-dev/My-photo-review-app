@@ -11,30 +11,25 @@ const ImageCard = ({ image, refetchQuery }) => {
   const deleteImage = useDeleteImage(image)
 
   const handleDeleteImage = async () => {
-	  await deleteImage.mutate()
+    await deleteImage.mutate()
 
-	  //invalidate query
-	  refetchQuery()
+    //invalidate query
+    refetchQuery()
   }
-
   return (
-    <Card
-      className={`image-card ${
-        deleteImage.isMutating ? 'mutating' : ''
-      }`}
-    >
+    <Card className={`image-card ${deleteImage.isMutating ? 'mutating' : ''}`}>
       <Card.Header>
         <span className="image-filrname" title={image.name}>
           {image.name}
         </span>
         <div className="card-actions">
-          {image.owner === currentUser.uid && (
+          {image.owner === currentUser?.uid && (
             <Button
               variant="danger"
               size="sm"
               disabled={deleteImage.isMutating}
-			  onClick={deleteImage.mutate}
-			  onClick={handleDeleteImage}
+              onClick={deleteImage.mutate}
+              onClick={handleDeleteImage}
             >
               <FontAwesomeIcon icon={faTrashAlt} />
             </Button>

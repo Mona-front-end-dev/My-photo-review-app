@@ -51,10 +51,6 @@ const LoginPage = () => {
 
 								<Button disabled={loading} type="submit">Log In</Button>
 							</Form>
-
-							<div className="text-center mt-3">
-								<Link to="/forgot-password">Have you forgotten your password?</Link>
-							</div>
 						</Card.Body>
 					</Card>
 
