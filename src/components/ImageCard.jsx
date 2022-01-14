@@ -19,9 +19,9 @@ const ImageCard = ({ image, refetchQuery }) => {
   return (
     <Card className={`image-card ${deleteImage.isMutating ? 'mutating' : ''}`}>
       <Card.Header>
-        <span className="image-filrname" title={image.name}>
+        {/* <span className="image-filrname" title={image.name}>
           {image.name}
-        </span>
+        </span> */}
         <div className="card-actions">
           {image.owner === currentUser?.uid && (
             <Button

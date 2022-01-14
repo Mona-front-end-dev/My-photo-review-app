@@ -8,6 +8,8 @@ import LogoutPage from './pages/LogoutPage'
 import UploadPage from './pages/UploadPage'
 import MyImagesPage from './pages/MyImagesPage'
 import RequireAuth from './components/RequireAuth'
+import AllbumsPage from './pages/AllbumsPage'
+
 
 function App() {
   return (
@@ -35,6 +37,14 @@ function App() {
             element={
               <RequireAuth redirectTo="/login">
                 <UploadPage />
+              </RequireAuth>
+            }
+          />
+		  <Route
+            path="/allbums"
+            element={
+              <RequireAuth redirectTo="/login">
+                <AllbumsPage />
               </RequireAuth>
             }
           />
