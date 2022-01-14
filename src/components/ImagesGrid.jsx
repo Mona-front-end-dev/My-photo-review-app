@@ -3,13 +3,13 @@ import Masonry from 'react-masonry-css'
 import Alert from 'react-bootstrap/Alert'
 import { BeatLoader } from 'react-spinners'
 import ImageCard from './ImageCard'
-
+import { SRLWrapper } from 'simple-react-lightbox'
 
 const masonryBreakpoints = {
-	default: 4,
-	576: 2,
-	768: 3,
-	992: 4,
+  default: 4,
+  576: 2,
+  768: 3,
+  992: 4,
 }
 
 const ImagesGrid = ({ query }) => {
@@ -26,15 +26,17 @@ const ImagesGrid = ({ query }) => {
   }
   return (
     query.data && (
-      <Masonry
-        breakpointCols={masonryBreakpoints}
-        className="images-masonry"
-        columnClassName="images-masonry-column"
-      >
-        {query.data.map(image => (
-			<ImageCard image={image} key={image._id} refetchQuery={refetchQuery}/>
-        ))}
-      </Masonry>
+      <SRLWrapper>
+        <Masonry
+          breakpointCols={masonryBreakpoints}
+          className="images-masonry"
+          columnClassName="images-masonry-column"
+        >
+          {query.data.map((image) => (
+            <ImageCard image={image} key={image._id} onDelete={refetchQuery} />
+          ))}
+        </Masonry>
+      </SRLWrapper>
     )
   )
 }

@@ -36,8 +36,10 @@ const ImageCard = ({ image, refetchQuery }) => {
           )}
         </div>
       </Card.Header>
-      <Card.Img variant="top" src={image.url} title={image._id} />
-      <Card.Footer>{image.owner}</Card.Footer>
+      <a href={image.url}>
+        <Card.Img variant="top" src={image.url} title={image._id} />
+      </a>
+      <Card.Footer>Owner:{image.owner}</Card.Footer>
     </Card>
   )
 }

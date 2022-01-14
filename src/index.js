@@ -4,8 +4,9 @@ import App from './App'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import  AuthContextProvider from './contexts/AuthContext'
+import AuthContextProvider from './contexts/AuthContext'
 import './assets/scss/App.scss'
+import SimpleReactLightbox from 'simple-react-lightbox'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,9 +23,11 @@ ReactDOM.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AuthContextProvider>
+          <SimpleReactLightbox>
 
-          <App />
-
+            <App />
+			
+          </SimpleReactLightbox>
         </AuthContextProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </BrowserRouter>
