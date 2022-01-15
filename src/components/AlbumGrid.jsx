@@ -15,9 +15,9 @@ const AlbumGrid = ({ query }) => {
   return (
     query.data && (
       <Col>
-          {query.data.map(album => (
-            <h5 key={album._id}>{album.name}</h5>
-          ))}
+        {query.data.map((album) => (
+          <h5 key={album._id}>{album.name}</h5>
+        ))}
       </Col>
     )
   )
