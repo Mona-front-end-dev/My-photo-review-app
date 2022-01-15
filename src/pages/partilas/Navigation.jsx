@@ -12,14 +12,14 @@ const Navigation = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="md">
       <Container>
-        <Link to="/albums">
+        <Link to="/">
           <span className="router-link">Photo Gallary 🖼️</span>
         </Link>
         <Nav className="ms-auto">
           {/* <NavLink to='/' className='nav-link'>All images</NavLink> */}
           {currentUser ? (
             <>
-              <NavLink to="/Albums" className="nav-link">
+              <NavLink to="/" className="nav-link">
                 Albums
               </NavLink>
               <NavLink to="/my-images" className="nav-link">

@@ -8,7 +8,6 @@ import LogoutPage from './pages/LogoutPage'
 import UploadImage from './components/UploadImage'
 import MyImagesPage from './pages/MyImagesPage'
 import RequireAuth from './components/RequireAuth'
-import AlbumsPage from './pages/AlbumsPage'
 
 
 function App() {
@@ -18,12 +17,20 @@ function App() {
       <Container className="py-3">
         <Routes>
           {/*Guest Routes*/}
-          <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
 
           {/*Protected Routes*/}
+
+		  <Route
+            path="/"
+            element={
+              <RequireAuth redirectTo="/login">
+                <HomePage />
+              </RequireAuth>
+            }
+          />
           <Route
             path="/my-images"
             element={
@@ -40,14 +47,14 @@ function App() {
               </RequireAuth>
             }
           />
-		  <Route
+		  {/* <Route
             path="/albums"
             element={
               <RequireAuth redirectTo="/login">
                 <AlbumsPage />
               </RequireAuth>
             }
-          />
+          /> */}
         </Routes>
       </Container>
     </>
