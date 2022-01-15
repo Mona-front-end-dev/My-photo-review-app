@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import LogoutPage from './pages/LogoutPage'
-import UploadPage from './pages/UploadPage'
+import UploadImage from './components/UploadImage'
 import MyImagesPage from './pages/MyImagesPage'
 import RequireAuth from './components/RequireAuth'
 import AllbumsPage from './pages/AllbumsPage'
@@ -36,7 +36,7 @@ function App() {
             path="/upload"
             element={
               <RequireAuth redirectTo="/login">
-                <UploadPage />
+                <UploadImage />
               </RequireAuth>
             }
           />

@@ -4,7 +4,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 import { useDropzone } from 'react-dropzone'
 import useUploadImage from '../hooks/useUploadImage'
 
-const UploadPage = () => {
+const UploadImage = () => {
   const uploadImage = useUploadImage()
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -68,4 +68,4 @@ const UploadPage = () => {
   )
 }
 
-export default UploadPage
+export default UploadImage
