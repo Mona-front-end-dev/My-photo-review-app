@@ -1,19 +1,20 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import { useDropzone } from 'react-dropzone'
 import useUploadImage from '../hooks/useUploadImage'
 
-const UploadImage = () => {
+const UploadImage = ({ albumId, query }) => {
   const uploadImage = useUploadImage()
 
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback(async (acceptedFiles) => {
     if (!acceptedFiles.length) {
       return
     }
 
     // trigger upload of the first file
-    uploadImage.mutate(acceptedFiles[0])
+	await uploadImage.mutate(acceptedFiles[0], albumId)
+	query.refetch()
   }, [])
 
   const {

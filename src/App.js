@@ -8,6 +8,7 @@ import LogoutPage from './pages/LogoutPage'
 import UploadImage from './components/UploadImage'
 import MyImagesPage from './pages/MyImagesPage'
 import RequireAuth from './components/RequireAuth'
+import AlbumPage from './pages/AlbumPage'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
+          <Route path="/album/:albumId" element={<AlbumPage />} />
 
           {/*Protected Routes*/}
 

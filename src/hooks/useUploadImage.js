@@ -13,7 +13,7 @@ const useUploadImage = () => {
 
   const { currentUser } = useAuthContext()
 
-  const mutate = async (image) => {
+  const mutate = async (image, albumId) => {
     // reset internal state
     setError(null)
     setIsError(null)
@@ -68,16 +68,16 @@ const useUploadImage = () => {
         path: storageRef.fullPath,
         size: image.size,
         type: image.type,
-        created: serverTimestamp(),
+		created: serverTimestamp(),
+		albumId,
         url,
       })
 
       setProgress(null)
       setIsSuccess(true)
       setIsUploading(false)
-      setIsError(false)
+	  setIsError(false)
 
-      console.log('url to uploaded image', url)
     } catch (e) {
       setError(e.message)
       setIsError(true)

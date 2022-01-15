@@ -24,6 +24,7 @@ const ImagesGrid = ({ query }) => {
   const refetchQuery = () => {
     query.refetch()
   }
+  
   return (
     query.data && (
       <SRLWrapper>
@@ -33,7 +34,7 @@ const ImagesGrid = ({ query }) => {
           columnClassName="images-masonry-column"
         >
           {query.data.map((image) => (
-            <ImageCard image={image} key={image._id} onDelete={refetchQuery} />
+            <ImageCard image={image} key={image._id} refetchQuery={refetchQuery} />
           ))}
         </Masonry>
       </SRLWrapper>

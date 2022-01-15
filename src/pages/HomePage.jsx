@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
-import AlbumGrid from '../components/AlbumCard'
+import AlbumCard from '../components/AlbumCard'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 import useAlbum from '../hooks/useAlbum'
 
@@ -21,8 +21,6 @@ const AlbumsPage = () => {
     albumQuery.refetch()
   }
 
-
-
   return (
     <div>
       <h1>Create your allbum</h1>
@@ -38,7 +36,7 @@ const AlbumsPage = () => {
           Create
         </Button>
         <hr />
-        <AlbumGrid query={albumQuery} />
+        <AlbumCard query={albumQuery} />
       </div>
     </div>
   )
