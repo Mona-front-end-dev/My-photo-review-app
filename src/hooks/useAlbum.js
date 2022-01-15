@@ -9,7 +9,7 @@ const useAlbum = () => {
 
   const queryKey = ['albums', currentUser.uid]
 
-  const queryRef = query(albumRef, where('owner', '==', currentUser.uid))
+  const queryRef = query(albumRef, where('owner', '==', currentUser.uid), orderBy("name", "desc"))
 
   const imagesQuery = useFirestoreQueryData(queryKey, queryRef, {
     // '_id' gives us id to every document

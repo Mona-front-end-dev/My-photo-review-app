@@ -1,7 +1,8 @@
 import { db } from '../firebase'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { useAuthContext } from '../contexts/AuthContext'
 import { useState } from 'react'
+import { v4 as uuid } from "uuid";
 
 const useCreateAlbum = () => {
   const [error, setError] = useState(null)
@@ -16,7 +17,9 @@ const useCreateAlbum = () => {
 
       await addDoc(collectionRef, {
         name: albumName,
-        owner: currentUser.uid,
+		owner: currentUser.uid,
+		created: serverTimestamp(),
+      	albumId: uuid()
       })
 
       setIsSuccess(true)
