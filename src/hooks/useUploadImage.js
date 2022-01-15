@@ -33,60 +33,58 @@ const useUploadImage = () => {
     // construct full path in storage to save image as
     const storageFullpath = `imagess/${currentUser.uid}/${storageFilename}`
 
-	try {
+    try {
+      // create a reference in storage to upload image
+      const storageRef = ref(storage, storageFullpath)
 
-		// create a reference in storage to upload image
-		const storageRef = ref(storage, storageFullpath)
+      // start upload of an image
+      const uploadTask = uploadBytesResumable(storageRef, image)
 
-		// start upload of an image
-		const uploadTask = uploadBytesResumable(storageRef, image)
+      // attach an upload observer
+      uploadTask.on('state_changed', (uploadTaskSnapshot) => {
+        // update progress
+        setProgress(
+          Math.round(
+            (uploadTaskSnapshot.bytesTransferred /
+              uploadTaskSnapshot.totalBytes) *
+              1000,
+          ) / 10,
+        )
+      })
 
-		// attach an upload observer
-		uploadTask.on('state_changed', (uploadTaskSnapshot) => {
-		  // update progress
-		  setProgress(
-			Math.round(
-			  (uploadTaskSnapshot.bytesTransferred /
-				uploadTaskSnapshot.totalBytes) *
-				1000,
-			) / 10,
-		  )
-		})
+      // waiting for upload to get comleted
+      await uploadTask.then()
 
-		// waiting for upload to get comleted
-		await uploadTask.then()
+      // get dowload url to uploaded image
+      const url = await getDownloadURL(storageRef)
 
-		// get dowload url to uploaded image
-		const url = await getDownloadURL(storageRef)
+      // create collection to db-collection 'imagess'
+      const collectionRef = collection(db, 'imagess')
 
-		// create collection to db-collection 'imagess'
-		const collectionRef = collection(db, 'imagess')
+      // create document in db for the uploaded image
+      await addDoc(collectionRef, {
+        name: image.name,
+        owner: currentUser.uid,
+        path: storageRef.fullPath,
+        size: image.size,
+        type: image.type,
+        created: serverTimestamp(),
+        url,
+      })
 
-		// create document in db for the uploaded image
-		await addDoc(collectionRef, {
-			name: image.name,
-			owner: currentUser.uid,
-			path: storageRef.fullPath,
-			size: image.size,
-			type: image.type,
-			created: serverTimestamp(),
-			url
-		})
+      setProgress(null)
+      setIsSuccess(true)
+      setIsUploading(false)
+      setIsError(false)
 
-		setProgress(null)
-		setIsSuccess(true)
-		setIsUploading(false)
-
-
-		console.log('url to uploaded image', url)
-	} catch (e) {
-		setError(e.message)
-		setIsError(true)
-		setIsUploading(false)
-		setIsSuccess(false)
-	}
+      console.log('url to uploaded image', url)
+    } catch (e) {
+      setError(e.message)
+      setIsError(true)
+      setIsUploading(false)
+      setIsSuccess(false)
+    }
   }
-
 
   return {
     error,
