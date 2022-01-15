@@ -8,7 +8,7 @@ import LogoutPage from './pages/LogoutPage'
 import UploadImage from './components/UploadImage'
 import MyImagesPage from './pages/MyImagesPage'
 import RequireAuth from './components/RequireAuth'
-import AllbumsPage from './pages/AllbumsPage'
+import AlbumsPage from './pages/AlbumsPage'
 
 
 function App() {
@@ -41,10 +41,10 @@ function App() {
             }
           />
 		  <Route
-            path="/allbums"
+            path="/albums"
             element={
               <RequireAuth redirectTo="/login">
-                <AllbumsPage />
+                <AlbumsPage />
               </RequireAuth>
             }
           />

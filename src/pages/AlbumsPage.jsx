@@ -4,7 +4,7 @@ import AlbumGrid from '../components/AlbumGrid'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 import useAlbum from '../hooks/useAlbum'
 
-const AllbumsPage = () => {
+const AlbumsPage = () => {
   const createAlbum = useCreateAlbum()
   const albumQuery = useAlbum()
   const [name, setName] = useState('')
@@ -42,4 +42,4 @@ const AllbumsPage = () => {
   )
 }
 
-export default AllbumsPage
+export default AlbumsPage

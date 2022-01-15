@@ -21,7 +21,7 @@ const Navigation = () => {
 				currentUser ? (
 					<>
 
-						<NavLink to='/Allbums' className='nav-link'>Allbums</NavLink>
+						<NavLink to='/Albums' className='nav-link'>Albums</NavLink>
 						<NavLink to='/my-images' className='nav-link'>My images</NavLink>
 						<NavLink to='/upload' className='nav-link'>Upload</NavLink>
 						<NavDropdown title={currentUser.displayName || currentUser.email} id='basic-nav-dropdown'>
