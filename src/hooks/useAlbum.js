@@ -11,12 +11,12 @@ const useAlbum = () => {
 
   const queryRef = query(albumRef, where('owner', '==', currentUser.uid), orderBy("name", "desc"))
 
-  const imagesQuery = useFirestoreQueryData(queryKey, queryRef, {
+  const albumQuery = useFirestoreQueryData(queryKey, queryRef, {
     // '_id' gives us id to every document
     idField: '_id',
   })
 
-  return imagesQuery
+  return albumQuery
 }
 
 export default useAlbum

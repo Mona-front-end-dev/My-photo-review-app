@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import AuthContextProvider from './contexts/AuthContext'
 import './assets/scss/App.scss'
 import SimpleReactLightbox from 'simple-react-lightbox'
+import '../src/index.css'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +27,7 @@ ReactDOM.render(
           <SimpleReactLightbox>
 
             <App />
-			
+
           </SimpleReactLightbox>
         </AuthContextProvider>
         <ReactQueryDevtools initialIsOpen={false} />
