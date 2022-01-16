@@ -8,6 +8,7 @@ import LogoutPage from './pages/LogoutPage'
 import RequireAuth from './components/RequireAuth'
 import AlbumPage from './pages/AlbumPage'
 import ReviewPage from './pages/ReviewPage'
+import ConfirmationPage from './pages/ConfirmationPage'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
           <Route path="/review/:albumId" element={<ReviewPage />} />
+          <Route path="/confirmation" element={<ConfirmationPage />} />
 
           {/*Protected Routes*/}
 
