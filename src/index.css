@@ -2,3 +2,8 @@
 	color: purple;
 	cursor: pointer;
 }
+
+
+.selected-bg {
+	background-color: #6ca7ff;
+}

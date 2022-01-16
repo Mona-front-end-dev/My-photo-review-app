@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
-const AlbumCard = ({ query }) => {
+const AlbumsGrid= ({ query }) => {
   if (query.isError) {
     return <Alert variant="warning">{query.isError}</Alert>
   }
@@ -31,4 +31,4 @@ const AlbumCard = ({ query }) => {
   )
 }
 
-export default AlbumCard
+export default AlbumsGrid

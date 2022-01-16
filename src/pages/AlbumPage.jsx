@@ -5,9 +5,11 @@ import UploadImage from '../components/UploadImage'
 import { useParams } from 'react-router-dom'
 import useAlbum from '../hooks/useAlbum'
 import useUpdateAlbum from '../hooks/useUpdateAlbum'
+import { Button } from 'react-bootstrap'
 
-const MyImagesPage = () => {
+const AlbumPage = () => {
 	const [onEdit, setOnEdit] = useState(false);
+	const [selections, setSelections] = useState([])
 	const [name, setName] = useState('');
 	const {albumId} = useParams();
 	const imagesQuery = useImages(albumId)
@@ -23,6 +25,25 @@ const MyImagesPage = () => {
 		await useUpdateAlbum(name, currentAlbum._id)
 		albums.refetch()
 		setOnEdit(false)
+	}
+
+	const onSelection = image => {
+		const index = selections.findIndex(img => image._id === img._id);
+		const newSelections = [...selections];
+
+		if(index === -1){
+			// Add selected item
+			newSelections.push(image);
+		} else {
+			// remove selected item
+			newSelections.splice(index, 1);
+		}
+
+		setSelections(newSelections)
+	}
+
+	const onCreateAlbumHandler = () => {
+
 	}
 
   return (
@@ -50,9 +71,10 @@ const MyImagesPage = () => {
 
 		<hr />
 		<UploadImage query={imagesQuery} albumId={albumId}/>
-      	<ImagesGrid query={imagesQuery} />
+      	<ImagesGrid query={imagesQuery} onSelectionCallback={onSelection} selectedImages={selections}/>
+		  <Button className="btn-success" disabled={! selections.length} onClick={onCreateAlbumHandler}>Create New Album</Button>
     </>
   )
 }
 
-export default MyImagesPage
+export default AlbumPage

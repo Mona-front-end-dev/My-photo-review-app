@@ -12,7 +12,7 @@ const masonryBreakpoints = {
   992: 4,
 }
 
-const ImagesGrid = ({ query }) => {
+const ImagesGrid = ({ query, onSelectionCallback, selectedImages }) => {
   if (query.isError) {
     return <Alert variant="warning">{query.isError}</Alert>
   }
@@ -24,7 +24,7 @@ const ImagesGrid = ({ query }) => {
   const refetchQuery = () => {
     query.refetch()
   }
-  
+
   return (
     query.data && (
       <SRLWrapper>
@@ -33,8 +33,8 @@ const ImagesGrid = ({ query }) => {
           className="images-masonry"
           columnClassName="images-masonry-column"
         >
-          {query.data.map((image) => (
-            <ImageCard image={image} key={image._id} refetchQuery={refetchQuery} />
+          {query.data.map(image => (
+            <ImageCard image={image} key={image._id} refetchQuery={refetchQuery} onSelectionCallback={onSelectionCallback} isSelected={selectedImages.includes(image)}/>
           ))}
         </Masonry>
       </SRLWrapper>

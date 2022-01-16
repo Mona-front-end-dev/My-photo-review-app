@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
-import AlbumCard from '../components/AlbumCard'
+import AlbumsGrid from '../components/AlbumsGrid'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 import useAlbum from '../hooks/useAlbum'
 
@@ -36,7 +36,7 @@ const AlbumsPage = () => {
           Create
         </Button>
         <hr />
-        <AlbumCard query={albumQuery} />
+        <AlbumsGrid query={albumQuery} />
       </div>
     </div>
   )

@@ -22,12 +22,6 @@ const Navigation = () => {
               <NavLink to="/" className="nav-link">
                 Albums
               </NavLink>
-              <NavLink to="/my-images" className="nav-link">
-                My images
-              </NavLink>
-              <NavLink to="/upload" className="nav-link">
-                Upload
-              </NavLink>
               <NavDropdown
                 title={currentUser.displayName || currentUser.email}
                 id="basic-nav-dropdown"

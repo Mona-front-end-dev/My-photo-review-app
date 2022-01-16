@@ -6,7 +6,6 @@ import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import LogoutPage from './pages/LogoutPage'
 import UploadImage from './components/UploadImage'
-import MyImagesPage from './pages/MyImagesPage'
 import RequireAuth from './components/RequireAuth'
 import AlbumPage from './pages/AlbumPage'
 
@@ -30,22 +29,6 @@ function App() {
             element={
               <RequireAuth redirectTo="/login">
                 <HomePage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/my-images"
-            element={
-              <RequireAuth redirectTo="/login">
-                <MyImagesPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/upload"
-            element={
-              <RequireAuth redirectTo="/login">
-                <UploadImage />
               </RequireAuth>
             }
           />
