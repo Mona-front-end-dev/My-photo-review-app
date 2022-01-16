@@ -9,8 +9,8 @@ const AlbumsPage = () => {
   const albumQuery = useAlbum()
   const [name, setName] = useState('')
 
-  const createHandler = () => {
-    createAlbum.mutate(name)
+  const createHandler = async () => {
+    await createAlbum.mutate(name)
     setName('')
     refetchQuery()
   }

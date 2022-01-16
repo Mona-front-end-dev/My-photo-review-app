@@ -15,20 +15,24 @@ const useCreateAlbum = () => {
     try {
       const collectionRef = collection(db, 'albums')
 
+	  const albumId = uuid();
+
       await addDoc(collectionRef, {
         name: albumName,
 		owner: currentUser.uid,
 		created: serverTimestamp(),
-      	albumId: uuid()
+      	albumId
       })
 
       setIsSuccess(true)
-      setIsError(false)
+	  setIsError(false)
+
+	  return albumId
     } catch (e) {
       setError(e.message)
       setIsError(true)
       setIsSuccess(false)
-    }
+	}
   }
 
   return {

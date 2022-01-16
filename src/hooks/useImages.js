@@ -5,9 +5,9 @@ import { useAuthContext } from '../contexts/AuthContext'
 
 const useImages = albumId => {
 	const { currentUser } = useAuthContext()
-	const colImagesRef = collection(db, 'imagess')
+	const colImagesRef = collection(db, 'images')
 
-	const queryKey = ['imagess', currentUser.uid ]
+	const queryKey = ['images', currentUser.uid ]
 
 	const queryRef = query(
 		 colImagesRef,

@@ -2,18 +2,28 @@ import React, { useState } from 'react'
 import useImages from '../hooks/useImages'
 import ImagesGrid from '../components/ImagesGrid'
 import UploadImage from '../components/UploadImage'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import useAlbum from '../hooks/useAlbum'
 import useUpdateAlbum from '../hooks/useUpdateAlbum'
-import { Button } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
+import useCreateImage from '../hooks/useCreateImage'
+import useCreateAlbum from '../hooks/useCreateAlbum'
 
 const AlbumPage = () => {
 	const [onEdit, setOnEdit] = useState(false);
 	const [selections, setSelections] = useState([])
 	const [name, setName] = useState('');
+	const [show, setShow] = useState(false);
+	const [newAlbumName, setNewAlbumName] = useState(null);
+	const navigate = useNavigate();
+
 	const {albumId} = useParams();
 	const imagesQuery = useImages(albumId)
+	const createImageQuery = useCreateImage()
+	const createAlbumQuery = useCreateAlbum()
 	const albums = useAlbum();
+
+  const handleClose = () => setShow(false);
 
 	const currentAlbum = albums.data?.find(a => a.albumId === albumId);
 
@@ -43,7 +53,22 @@ const AlbumPage = () => {
 	}
 
 	const onCreateAlbumHandler = () => {
+			setShow(true)
+	}
 
+	const onNewAlbumNameChangeHandler = (albumName) => {
+		setNewAlbumName(albumName)
+	}
+
+	const doCreateAlbumHandler = async () => {
+		const newAlbumId = await createAlbumQuery.mutate(newAlbumName)
+
+		selections.forEach(async img => {
+			await createImageQuery(img, newAlbumId)
+		})
+
+		setShow(false)
+		navigate(`/album/${newAlbumId}`)
 	}
 
   return (
@@ -72,7 +97,25 @@ const AlbumPage = () => {
 		<hr />
 		<UploadImage query={imagesQuery} albumId={albumId}/>
       	<ImagesGrid query={imagesQuery} onSelectionCallback={onSelection} selectedImages={selections}/>
-		  <Button className="btn-success" disabled={! selections.length} onClick={onCreateAlbumHandler}>Create New Album</Button>
+		<Button variant="primary" className="btn-success" disabled={! selections.length} onClick={onCreateAlbumHandler}>Create New Album</Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Choose A Name</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+			<p>Please choose a name for your new album</p>
+			<input onChange={e => onNewAlbumNameChangeHandler(e.target.value)} type="text"/>
+		</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={doCreateAlbumHandler}>
+            Create Album
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }

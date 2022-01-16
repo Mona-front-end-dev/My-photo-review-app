@@ -28,10 +28,10 @@ const useUploadImage = () => {
     }
 
     // instead of uuid we construct filename to save image as
-    const storageFilename = `${Date.now()} + '-' + ${image.name}`
+    const storageFilename = `${Date.now()}-${image.name}`
 
     // construct full path in storage to save image as
-    const storageFullpath = `imagess/${currentUser.uid}/${storageFilename}`
+    const storageFullpath = `images/${currentUser.uid}/${storageFilename}`
 
     try {
       // create a reference in storage to upload image
@@ -58,8 +58,8 @@ const useUploadImage = () => {
       // get dowload url to uploaded image
       const url = await getDownloadURL(storageRef)
 
-      // create collection to db-collection 'imagess'
-      const collectionRef = collection(db, 'imagess')
+      // create collection to db-collection 'images'
+      const collectionRef = collection(db, 'images')
 
       // create document in db for the uploaded image
       await addDoc(collectionRef, {

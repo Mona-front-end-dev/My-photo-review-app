@@ -15,11 +15,8 @@ const useDeleteImage = (image) => {
     setIsMutating(true)
 
     try {
-      //delete image from storage
-      await deleteObject(ref(storage, image.path))
-
       //delete image from db
-      await deleteDoc(doc(db, 'imagess', image._id))
+      await deleteDoc(doc(db, 'images', image._id))
 
       setIsMutating(false)
     } catch (e) {
