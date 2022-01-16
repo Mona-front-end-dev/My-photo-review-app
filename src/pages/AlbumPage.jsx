@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import useImages from '../hooks/useImages'
 import ImagesGrid from '../components/ImagesGrid'
 import UploadImage from '../components/UploadImage'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import useAlbum from '../hooks/useAlbum'
+import { useParams, Link } from 'react-router-dom'
+import useSingleAlbum from '../hooks/useSingleAlbum'
 import useUpdateAlbum from '../hooks/useUpdateAlbum'
 import { Button, Modal } from 'react-bootstrap'
 import useCreateImage from '../hooks/useCreateImage'
@@ -15,18 +15,18 @@ const AlbumPage = () => {
 	const [name, setName] = useState('');
 	const [show, setShow] = useState(false);
 	const [newAlbumName, setNewAlbumName] = useState(null);
-	const navigate = useNavigate();
 
 	const {albumId} = useParams();
 	const imagesQuery = useImages(albumId)
 	const createImageQuery = useCreateImage()
 	const createAlbumQuery = useCreateAlbum()
-	const albums = useAlbum();
+	const albums = useSingleAlbum(albumId);
+
 	const reviewLink = `${window.location.origin}/review/${albumId}`
 
   const handleClose = () => setShow(false);
 
-	const currentAlbum = albums.data?.find(a => a.albumId === albumId);
+  const currentAlbum = albums.data?.find(a => a.albumId === albumId);
 
 	const updateInputValue = albumName => {
 		setName(albumName)
@@ -69,12 +69,11 @@ const AlbumPage = () => {
 		})
 
 		setShow(false)
-		navigate(`/album/${newAlbumId}`)
 	}
 
   return (
     <>
-		{ currentAlbum?.name ?
+		{ currentAlbum ?
 		<div className="d-flex align-items-center">
 			<h1 className="mb-0">
 				{currentAlbum?.name}

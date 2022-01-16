@@ -1,13 +1,24 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ImagesGrid from '../components/ImagesGrid';
 import useImages from '../hooks/useImages'
+import useCreateAlbum from '../hooks/useCreateAlbum'
+import useSingleAlbum from '../hooks/useSingleAlbum';
+import useCreateImage from '../hooks/useCreateImage';
 
 const ReviewPage = () => {
 	const [selections, setSelections] = useState([])
 	const {albumId} = useParams();
 	const imagesQuery = useImages(albumId, true)
+	const createAlbumQuery = useCreateAlbum()
+	const albums = useSingleAlbum(albumId);
+	const createImageQuery = useCreateImage()
+	const navigate = useNavigate()
+
+	const currentAlbum = albums.data?.find(a => a.albumId === albumId);
+
+
 
 	const onSelection = image => {
 		const index = selections.findIndex(img => image._id === img._id);
@@ -24,17 +35,32 @@ const ReviewPage = () => {
 		setSelections(newSelections)
 	}
 
-	const onSubmitReviewHandler = () => {
-		
+	const onSubmitReviewHandler = async () => {
+
+		const currentDateString = new Date(Date.now()).toUTCString();
+		const newAlbumName = `${currentAlbum.name}-${currentDateString}`
+		const newAlbumId = await createAlbumQuery.mutate(newAlbumName)
+
+
+		selections.forEach(async img => {
+			await createImageQuery(img, newAlbumId)
+		})
+
+		navigate(`/confirmation`)
 	}
 
     return (
 		<>
-			<div className="d-flex align-items-center">
-				<h1 className="mb-0">
-					Please select you favorite images
-				</h1>
-			</div>
+			{ currentAlbum ?
+		<div className="d-flex align-items-center">
+			<h1 className="mb-0">
+				{currentAlbum?.name}
+			</h1>
+		</div>
+			:
+		<h1>Loading ...</h1>
+		}
+
 
 			<hr />
 
