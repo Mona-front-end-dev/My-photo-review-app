@@ -20,7 +20,6 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
-          <Route path="/album/:albumId" element={<AlbumPage />} />
           <Route path="/review/:albumId" element={<ReviewPage />} />
 
           {/*Protected Routes*/}
@@ -30,6 +29,15 @@ function App() {
             element={
               <RequireAuth redirectTo="/login">
                 <HomePage />
+              </RequireAuth>
+            }
+          />
+
+		  <Route
+            path="/album/:albumId"
+            element={
+              <RequireAuth redirectTo="/login">
+                <AlbumPage />
               </RequireAuth>
             }
           />
