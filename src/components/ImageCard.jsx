@@ -7,7 +7,7 @@ import useDeleteImage from '../hooks/useDeleteImage'
 import Button from 'react-bootstrap/Button'
 
 const ImageCard = ({ image, refetchQuery, onSelectionCallback, isSelected }) => {
-  const { currentUser } = useAuthContext()
+	const { currentUser } = useAuthContext()
   const deleteImage = useDeleteImage(image)
 
   const handleDeleteImage = async () => {
@@ -25,9 +25,8 @@ const ImageCard = ({ image, refetchQuery, onSelectionCallback, isSelected }) => 
     <Card className={`image-card ${deleteImage.isMutating ? 'mutating' : ''}`}>
       <Card.Header className={isSelected ? 'selected-bg' : null}>
         <div className="card-actions">
-          {image.owner === currentUser?.uid && (
             <div className="d-flex justify-content-between align-item-center">
-              <Button
+            	{currentUser && <Button
                 variant="danger"
                 size="sm"
                 disabled={deleteImage.isMutating}
@@ -35,7 +34,7 @@ const ImageCard = ({ image, refetchQuery, onSelectionCallback, isSelected }) => 
                 onClick={handleDeleteImage}
               >
                 <FontAwesomeIcon icon={faTrashAlt} />
-              </Button>
+              </Button>}
               <span className="form-switch f-right">
                 <input
                   className="form-check-input"
@@ -49,7 +48,6 @@ const ImageCard = ({ image, refetchQuery, onSelectionCallback, isSelected }) => 
                 ></label>
               </span>
             </div>
-          )}
         </div>
       </Card.Header>
       <a href={image.url}>

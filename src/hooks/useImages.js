@@ -3,13 +3,21 @@ import { db } from '../firebase'
 import { collection, query, where, orderBy } from 'firebase/firestore'
 import { useAuthContext } from '../contexts/AuthContext'
 
-const useImages = albumId => {
+const useImages = (albumId, isAnonymouse = false) => {
 	const { currentUser } = useAuthContext()
 	const colImagesRef = collection(db, 'images')
 
-	const queryKey = ['images', currentUser.uid ]
+	const queryKey = isAnonymouse
+	?['images']
+	:['images', currentUser.uid ]
 
-	const queryRef = query(
+	const queryRef = isAnonymouse
+	?query(
+		colImagesRef,
+		where('albumId', '==', albumId),
+		orderBy('created', 'desc')
+   )
+	:query(
 		 colImagesRef,
 		 where('owner', '==', currentUser.uid),
 		 where('albumId', '==', albumId),
