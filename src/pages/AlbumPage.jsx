@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import useImages from '../hooks/useImages'
 import ImagesGrid from '../components/ImagesGrid'
 import UploadImage from '../components/UploadImage'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import useAlbum from '../hooks/useAlbum'
 import useUpdateAlbum from '../hooks/useUpdateAlbum'
 import { Button, Modal } from 'react-bootstrap'
@@ -22,6 +22,7 @@ const AlbumPage = () => {
 	const createImageQuery = useCreateImage()
 	const createAlbumQuery = useCreateAlbum()
 	const albums = useAlbum();
+	const reviewLink = `${window.location.origin}/review/${albumId}`
 
   const handleClose = () => setShow(false);
 
@@ -95,6 +96,9 @@ const AlbumPage = () => {
 		}
 
 		<hr />
+		<p>
+	 		Review Link: <Link to={`/review/${albumId}`}>{reviewLink}</Link>
+		</p>
 		<UploadImage query={imagesQuery} albumId={albumId}/>
       	<ImagesGrid query={imagesQuery} onSelectionCallback={onSelection} selectedImages={selections}/>
 		<Button variant="primary" className="btn-success" disabled={! selections.length} onClick={onCreateAlbumHandler}>Create New Album</Button>

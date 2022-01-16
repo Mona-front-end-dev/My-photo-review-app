@@ -5,9 +5,9 @@ import Container from 'react-bootstrap/Container'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import LogoutPage from './pages/LogoutPage'
-import UploadImage from './components/UploadImage'
 import RequireAuth from './components/RequireAuth'
 import AlbumPage from './pages/AlbumPage'
+import ReviewPage from './pages/ReviewPage'
 
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
           <Route path="/album/:albumId" element={<AlbumPage />} />
+          <Route path="/review/:albumId" element={<ReviewPage />} />
 
           {/*Protected Routes*/}
 
@@ -32,14 +33,6 @@ function App() {
               </RequireAuth>
             }
           />
-		  {/* <Route
-            path="/albums"
-            element={
-              <RequireAuth redirectTo="/login">
-                <AlbumsPage />
-              </RequireAuth>
-            }
-          /> */}
         </Routes>
       </Container>
     </>

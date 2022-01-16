@@ -31,8 +31,6 @@ const UploadImage = ({ albumId, query }) => {
 
   return (
     <div>
-      <h1>Upload a New image by dropzone</h1>
-
       {/* Dropzone */}
       <div
         {...getRootProps()}
