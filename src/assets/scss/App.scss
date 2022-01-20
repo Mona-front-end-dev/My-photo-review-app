@@ -9,6 +9,23 @@
 	padding: 15px 7px;
 }
 
+.folder-link {
+	text-decoration: none;
+	display: inline-block;
+	padding: 15px 7px;
+	color: rgb(39, 39, 38);
+}
+
+.folder {
+	color: orange;
+	font-size: 6rem;
+}
+
+.folder-name {
+	font-size: 1rem;
+	text-align: center;
+}
+
 #spinner {
 	display: grid;
 	place-items: center;

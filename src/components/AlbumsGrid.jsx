@@ -3,7 +3,7 @@ import Alert from 'react-bootstrap/Alert'
 import { BeatLoader } from 'react-spinners'
 import { Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFolder } from '@fortawesome/free-solid-svg-icons'
+import { faFolderOpen } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 const AlbumsGrid= ({ query }) => {
@@ -19,10 +19,10 @@ const AlbumsGrid= ({ query }) => {
     query.data && (
       <Col>
         {query.data.map((album) => (
-          <Link key={album._id} to={`/album/${album.albumId}`}>
+          <Link className="folder-link" key={album._id} to={`/album/${album.albumId}`}>
             <h1 className="p-3">
-              <FontAwesomeIcon icon={faFolder} className="display-block" />
-              <div> {album.name}</div>
+              <FontAwesomeIcon icon={faFolderOpen} className="display-block folder" />
+              <div className='folder-name' > {album.name}</div>
             </h1>
           </Link>
         ))}

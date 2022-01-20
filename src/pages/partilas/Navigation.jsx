@@ -16,7 +16,6 @@ const Navigation = () => {
           <span className="router-link">Photo Gallary 🖼️</span>
         </Link>
         <Nav className="ms-auto">
-          {/* <NavLink to='/' className='nav-link'>All images</NavLink> */}
           {currentUser ? (
             <>
               <NavLink to="/" className="nav-link">
