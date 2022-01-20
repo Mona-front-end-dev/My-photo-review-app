@@ -63,10 +63,6 @@ const SignupPage = () => {
 
 								<Button disabled={loading} type="submit">Create Account</Button>
 							</Form>
-
-							<div className="text-center mt-3">
-								<Link to="/forgot-password">Forgot Password?</Link>
-							</div>
 						</Card.Body>
 					</Card>
 
