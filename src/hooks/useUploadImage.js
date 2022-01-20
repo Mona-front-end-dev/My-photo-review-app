@@ -27,22 +27,19 @@ const useUploadImage = () => {
       return
     }
 
-    // instead of uuid we construct filename to save image as
     const storageFilename = `${Date.now()}-${image.name}`
 
-    // construct full path in storage to save image as
+    // construct full path in storage
     const storageFullpath = `images/${currentUser.uid}/${storageFilename}`
 
     try {
-      // create a reference in storage to upload image
+      // create a reference in storage
       const storageRef = ref(storage, storageFullpath)
 
-      // start upload of an image
       const uploadTask = uploadBytesResumable(storageRef, image)
 
       // attach an upload observer
       uploadTask.on('state_changed', (uploadTaskSnapshot) => {
-        // update progress
         setProgress(
           Math.round(
             (uploadTaskSnapshot.bytesTransferred /
@@ -52,10 +49,10 @@ const useUploadImage = () => {
         )
       })
 
-      // waiting for upload to get comleted
+      // waiting for upload to get completed
       await uploadTask.then()
 
-      // get dowload url to uploaded image
+      // get dowload url
       const url = await getDownloadURL(storageRef)
 
       // create collection to db-collection 'images'

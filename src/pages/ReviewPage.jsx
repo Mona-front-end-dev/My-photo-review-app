@@ -39,8 +39,7 @@ const ReviewPage = () => {
 
 		const currentDateString = new Date(Date.now()).toUTCString();
 		const newAlbumName = `${currentAlbum.name}-${currentDateString}`
-		const newAlbumId = await createAlbumQuery.mutate(newAlbumName)
-
+		const newAlbumId = await createAlbumQuery.mutate(newAlbumName, currentAlbum.owner)
 
 		selections.forEach(async img => {
 			await createImageQuery(img, newAlbumId)
@@ -61,11 +60,10 @@ const ReviewPage = () => {
 		<h1>Loading ...</h1>
 		}
 
-
 			<hr />
 
 			<ImagesGrid query={imagesQuery} onSelectionCallback={onSelection} selectedImages={selections}/>
-	<Button className="btn-success" disabled={! selections.length} onClick={onSubmitReviewHandler}>
+	<Button className="btn-success" disabled={!selections.length} onClick={onSubmitReviewHandler}>
 		{
 			selections.length
 			? `Submit ${selections.length} Images`

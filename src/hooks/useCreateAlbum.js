@@ -11,15 +11,16 @@ const useCreateAlbum = () => {
 
   const { currentUser } = useAuthContext()
 
-  const mutate = async (albumName) => {
+  const mutate = async (albumName, ownerId = null) => {
     try {
       const collectionRef = collection(db, 'albums')
 
 	  const albumId = uuid();
+		const owner = currentUser ? currentUser.uid : ownerId;
 
       await addDoc(collectionRef, {
         name: albumName,
-		owner: currentUser.uid,
+		owner,
 		created: serverTimestamp(),
       	albumId
       })
@@ -29,6 +30,7 @@ const useCreateAlbum = () => {
 
 	  return albumId
     } catch (e) {
+		debugger;
       setError(e.message)
       setIsError(true)
       setIsSuccess(false)

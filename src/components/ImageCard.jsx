@@ -53,9 +53,6 @@ const ImageCard = ({ image, refetchQuery, onSelectionCallback, isSelected }) => 
       <a href={image.url}>
         <Card.Img variant="top" src={image.url} title={image._id} />
       </a>
-      <Card.Footer className={isSelected ? 'selected-bg' : null}>
-		  Owner:{image.owner}
-		</Card.Footer>
     </Card>
   )
 }

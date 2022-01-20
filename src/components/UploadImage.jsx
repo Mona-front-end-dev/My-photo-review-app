@@ -43,9 +43,9 @@ const UploadImage = ({ albumId, query }) => {
         <div className="indicator">
           {isDragActive ? (
             isDragAccept ? (
-              <p>Drop is accepted</p>
+              <p>Drop has been accepted</p>
             ) : (
-              <p>Drop is rejected!</p>
+              <p>Drop has been rejected!</p>
             )
           ) : (
             <p>Drop an acceptable file here</p>
@@ -58,9 +58,6 @@ const UploadImage = ({ albumId, query }) => {
 
         {uploadImage.isError && (
           <Alert variant="warning">{uploadImage.error}</Alert>
-        )}
-        {uploadImage.isSuccess && (
-          <Alert variant="success">That was a correct file to upload 😎 </Alert>
         )}
       </div>
     </div>
