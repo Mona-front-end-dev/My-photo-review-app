@@ -3,7 +3,6 @@ import React from 'react'
 
 const ConfirmationPage = () => {
 
-
     return (
 		<>
 			<div className="d-flex align-items-center">
@@ -13,7 +12,7 @@ const ConfirmationPage = () => {
 			</div>
 
 			<hr />
-			<p>You submition has been successfuly sent!</p>
+			<p>Your selected photoes have been successfuly sent!</p>
 		</>
   )
 }

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { doc, deleteDoc } from 'firebase/firestore'
-import { ref, deleteObject } from 'firebase/storage'
-import { db, storage } from '../firebase'
+import { db } from '../firebase'
 
 const useDeleteImage = (image) => {
   const [error, setError] = useState(null)
@@ -17,7 +16,6 @@ const useDeleteImage = (image) => {
     try {
       //delete image from db
       await deleteDoc(doc(db, 'images', image._id))
-
       setIsMutating(false)
     } catch (e) {
       setError(e.message)

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import React, { useState } from 'react'
+import React from 'react'
 import Card from 'react-bootstrap/Card'
 import { useAuthContext } from '../contexts/AuthContext'
 import useDeleteImage from '../hooks/useDeleteImage'

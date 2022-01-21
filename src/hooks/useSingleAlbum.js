@@ -10,7 +10,6 @@ const useSingleAlbum = (albumId) => {
   const queryRef = query(albumRef, where('albumId', '==', albumId), orderBy("name", "desc"))
 
   const albumQuery = useFirestoreQueryData(queryKey, queryRef, {
-    // '_id' gives us id to every document
     idField: '_id',
   })
 

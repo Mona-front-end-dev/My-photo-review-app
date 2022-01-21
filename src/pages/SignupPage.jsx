@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Row, Col, Form, Button, Card, Alert} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
-import { useHistory, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const SignupPage = () => {
 	const emailRef = useRef()
