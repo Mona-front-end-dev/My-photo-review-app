@@ -13,7 +13,7 @@ const Navigation = () => {
     <Navbar bg="dark" variant="dark" expand="md">
       <Container>
         <Link to="/">
-          <span className="router-link">Photo Gallary 🖼️</span>
+          <span className="logo">Gallary 🖼️</span>
         </Link>
         <Nav className="ms-auto">
           {currentUser ? (

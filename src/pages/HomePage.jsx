@@ -23,16 +23,16 @@ const AlbumsPage = () => {
 
   return (
     <div>
-      <h1>Create your allbum</h1>
+      <h3>Create your album</h3>
       <div className="flex">
         <input
           type="text"
           value={name}
-          placeholder="Create an allbum"
+          placeholder="Your album name"
           onChange={(e) => updateInputValue(e.target.value)}
-          className="p-2 mx-3"
+          className="p-1"
         />
-        <Button onClick={createHandler} disabled={!name.length}>
+        <Button onClick={createHandler} variant='success' disabled={!name.length} className='mx-3'>
           Create
         </Button>
         <hr />

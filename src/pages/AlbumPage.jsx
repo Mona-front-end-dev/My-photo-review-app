@@ -8,6 +8,8 @@ import useUpdateAlbum from '../hooks/useUpdateAlbum'
 import { Button, Modal } from 'react-bootstrap'
 import useCreateImage from '../hooks/useCreateImage'
 import useCreateAlbum from '../hooks/useCreateAlbum'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const AlbumPage = () => {
 	const [onEdit, setOnEdit] = useState(false);
@@ -78,7 +80,7 @@ const AlbumPage = () => {
 			<h1 className="mb-0">
 				{currentAlbum?.name}
 			</h1>
-			<span className="ms-4 edit-button" onClick={() => setOnEdit(true)}>Edit</span>
+			<FontAwesomeIcon className="ms-4 edit-button" onClick={() => setOnEdit(true)} icon={faEdit}/>
 		</div>
 			:
 		<h1>Loading ...</h1>
@@ -86,9 +88,9 @@ const AlbumPage = () => {
 
 		{
 			onEdit ?
-			<div>
+			<div className='my-3'>
 				<input type="text" onChange={(e) => updateInputValue(e.target.value)} />
-				<button type="button" disabled={! name.length} onClick={UpdateTitle}>Update</button>
+				<Button type="button" className='mx-3 py-1 px-2' variant='success' disabled={! name.length} onClick={UpdateTitle}>Update</Button>
 			</div>
 			:
 			null
