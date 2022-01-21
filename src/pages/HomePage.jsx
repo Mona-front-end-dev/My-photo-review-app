@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import AlbumsGrid from '../components/AlbumsGrid'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 import useAlbum from '../hooks/useAlbum'
+import { Col } from 'react-bootstrap'
 
 const AlbumsPage = () => {
   const createAlbum = useCreateAlbum()
@@ -22,7 +23,7 @@ const AlbumsPage = () => {
   }
 
   return (
-    <div>
+    <Col>
       <h3>Create your album</h3>
       <div className="flex">
         <input
@@ -38,7 +39,7 @@ const AlbumsPage = () => {
         <hr />
         <AlbumsGrid query={albumQuery} />
       </div>
-    </div>
+    </Col>
   )
 }
 

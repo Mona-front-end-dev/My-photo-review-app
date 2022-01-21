@@ -6,6 +6,8 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import 'bootstrap/dist/css/bootstrap.css'
 import { useAuthContext } from '../../contexts/AuthContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faImages } from '@fortawesome/free-solid-svg-icons'
 
 const Navigation = () => {
   const { currentUser } = useAuthContext()
@@ -13,9 +15,9 @@ const Navigation = () => {
     <Navbar bg="dark" variant="dark" expand="md">
       <Container>
         <Link to="/">
-          <span className="logo">Gallary 🖼️</span>
+          <img src="logo.png" height="60" />
         </Link>
-        <Nav className="ms-auto">
+        <Nav>
           {currentUser ? (
             <>
               <NavLink to="/" className="nav-link">

@@ -38,7 +38,7 @@ const SignupPage = () => {
 	return (
 		<>
 			<Row>
-				<Col>
+				<Col md={{ span: 6, offset: 3 }}>
 					<Card>
 						<Card.Body>
 							<Card.Title className="mb-3">Sign Up</Card.Title>

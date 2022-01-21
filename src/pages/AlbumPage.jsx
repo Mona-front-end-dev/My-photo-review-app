@@ -89,8 +89,8 @@ const AlbumPage = () => {
 		{
 			onEdit ?
 			<div className='my-3'>
-				<input type="text" onChange={(e) => updateInputValue(e.target.value)} />
-				<Button type="button" className='mx-3 py-1 px-2' variant='success' disabled={! name.length} onClick={UpdateTitle}>Update</Button>
+				<input type="text" className='px-3' onChange={(e) => updateInputValue(e.target.value)} placeholder="Your new album name"/>
+				<Button type="button" className="mx-3 py-1 px-2" variant="success" disabled={! name.length} onClick={UpdateTitle}>Update</Button>
 			</div>
 			:
 			null

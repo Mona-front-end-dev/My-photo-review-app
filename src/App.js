@@ -17,7 +17,6 @@ function App() {
       <Navigation />
       <Container className="py-3">
         <Routes>
-			
           {/*Guest Routes*/}
 
           <Route path="/signup" element={<SignupPage />} />
