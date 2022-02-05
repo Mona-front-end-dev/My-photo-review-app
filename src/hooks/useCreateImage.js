@@ -7,7 +7,7 @@ const useCreateImage = () => {
 
 	const { currentUser } = useAuthContext()
 
-	const mutate = async (image, albumId) => {
+	const mutate = async (image, albumId, ownerId = null) => {
 		const storageFullpath = image.path
 
 		// create a reference in storage to upload image
@@ -19,10 +19,12 @@ const useCreateImage = () => {
 		// create collection to db-collection 'images'
 		const collectionRef = collection(db, 'images')
 
+		const owner = currentUser ? currentUser.uid : ownerId;
+
 		// create document in db for the uploaded image
 		await addDoc(collectionRef, {
 			name: image.name,
-			owner: currentUser.uid,
+			owner: owner,
 			path: storageRef.fullPath,
 			size: image.size,
 			type: image.type,

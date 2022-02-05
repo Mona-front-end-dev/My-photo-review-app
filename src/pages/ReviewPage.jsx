@@ -42,7 +42,7 @@ const ReviewPage = () => {
 		const newAlbumId = await createAlbumQuery.mutate(newAlbumName, currentAlbum.owner)
 
 		selections.forEach(async img => {
-			await createImageQuery(img, newAlbumId)
+			await createImageQuery(img, newAlbumId, currentAlbum.owner)
 		})
 
 		navigate(`/confirmation`)
