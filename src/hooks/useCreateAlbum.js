@@ -30,7 +30,6 @@ const useCreateAlbum = () => {
 
 	  return albumId
     } catch (e) {
-		debugger;
       setError(e.message)
       setIsError(true)
       setIsSuccess(false)

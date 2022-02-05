@@ -15,7 +15,7 @@ const Navigation = () => {
     <Navbar bg="dark" variant="dark" expand="md">
       <Container>
         <Link to="/">
-          <img src="logo.png" height="60" />
+          <img src="/logo.png" height="60" />
         </Link>
         <Nav>
           {currentUser ? (
